@@ -6,7 +6,6 @@ import java.awt.image.BufferedImage;
 
 import gui.JframeImagen;
 import open.AbrirImagen;
-
 public class Main {
 
     public static void main(String[] args) {
