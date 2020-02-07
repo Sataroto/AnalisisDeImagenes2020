@@ -6,10 +6,12 @@ import java.awt.image.BufferedImage;
 
 import gui.JframeImagen;
 import open.AbrirImagen;
+import herramienta.*;
 public class Main {
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) 
+    
+        /*{ //Lectura de Imagen y Circulo
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
@@ -18,6 +20,10 @@ public class Main {
         JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi));
        
         System.out.println();
+        }*/
 
+    {   //GeneracionHistograma;
+        histograma uwu = new histograma();
+        uwu.imprimirGrafica();
     }
 }
