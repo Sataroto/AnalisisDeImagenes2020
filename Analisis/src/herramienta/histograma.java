@@ -14,6 +14,24 @@ public class histograma{
     public double[] blue;
     public double[] green;
     public double[] hgris;
+    public histograma(Image imagen){
+        red = new double[256];
+        blue = new double[256];
+        green = new double[256];
+        hgris = new double[256];
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color muestra;
+        for(int x = 0 ; x< bi.getWidth(); x++){
+            for(int y =0; y<bi.getHeight();y++){
+                muestra =new Color( bi.getRGB(x, y));
+                red[muestra.getRed()]++;
+                blue[muestra.getBlue()]++;
+                green[muestra.getGreen()]++;
+                int prom = (muestra.getBlue() + muestra.getRed() + muestra.getGreen())/3;
+                hgris[prom]++;
+            }
+        }
+    }
     public histograma(){
         red = new double[256];
         blue = new double[256];
@@ -33,32 +51,27 @@ public class histograma{
                 hgris[prom]++;
             }
         }
+
     }
     public void imprimirGrafica(){
         //Imprime rojos
         grafica rojos = new grafica ("x","y","rojos");
         rojos.agregarSerie(this.red, "rojo");
-        XYPlot rojo = rojos.grafica.getXYPlot();
-        rojo.getRenderer().setSeriesPaint(0, new Color(Color.RED.getRGB()));
+        rojos.creaYmuestraGrafica(Color.RED);
+
 
         grafica azules = new grafica ( "x","y","azules");
         azules.agregarSerie(this.blue, "azul");
-        XYPlot azul = azules.grafica.getXYPlot();
-        azul.getRenderer().setSeriesPaint(0, new Color(Color.blue.getRGB()));
+        azules.creaYmuestraGrafica(Color.BLUE);
 
         grafica verdes = new grafica ( "x","y","verdes");
         verdes.agregarSerie(this.green, "verde");
-        XYPlot verde= verdes.grafica.getXYPlot();
-        verde.getRenderer().setSeriesPaint(0, new Color(Color.green.getRGB()));
+        verdes.creaYmuestraGrafica(Color.GREEN);
 
         grafica grises = new grafica ( "x","y","grises");
         grises.agregarSerie(this.hgris, "gris");
-        XYPlot gris = grises.grafica.getXYPlot();
-        gris.getRenderer().setSeriesPaint(0, new Color(Color.gray.getRGB()));
+        grises.creaYmuestraGrafica(Color.GRAY);
 
-        rojos.creaYmuestraGrafica();
-        azules.creaYmuestraGrafica();
-        verdes.creaYmuestraGrafica();
-        grises.creaYmuestraGrafica();
+
     }
 }

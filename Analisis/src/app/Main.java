@@ -22,8 +22,13 @@ public class Main {
         System.out.println();
         }*/
 
-    {   //GeneracionHistograma;
+    {   /*//GeneracionHistograma;
         histograma uwu = new histograma();
-        uwu.imprimirGrafica();
+        uwu.imprimirGrafica();*/
+        Image imagen = AbrirImagen.openImage();
+        JframeImagen frame = new JframeImagen(imagen);
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        filtros uwu = new filtros(imagen);
+        uwu.iluminacion(-50);
     }
 }
