@@ -14,11 +14,35 @@ public class histograma{
     public double[] blue;
     public double[] green;
     public double[] hgris;
+    public String titulo;
+
+    public histograma(Image imagen, String titulo){
+        this.titulo = titulo;
+        red = new double[256];
+        blue = new double[256];
+        green = new double[256];
+        hgris = new double[256];
+        titulo="";
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
+        Color muestra;
+        for(int x = 0 ; x< bi.getWidth(); x++){
+            for(int y =0; y<bi.getHeight();y++){
+                muestra =new Color( bi.getRGB(x, y));
+                red[muestra.getRed()]++;
+                blue[muestra.getBlue()]++;
+                green[muestra.getGreen()]++;
+                int prom = (muestra.getBlue() + muestra.getRed() + muestra.getGreen())/3;
+                hgris[prom]++;
+            }
+        }
+    }
+
     public histograma(Image imagen){
         red = new double[256];
         blue = new double[256];
         green = new double[256];
         hgris = new double[256];
+        titulo="";
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         Color muestra;
         for(int x = 0 ; x< bi.getWidth(); x++){
@@ -33,6 +57,7 @@ public class histograma{
         }
     }
     public histograma(){
+        titulo="";
         red = new double[256];
         blue = new double[256];
         green = new double[256];
@@ -55,7 +80,7 @@ public class histograma{
     }
     public void imprimirRGB(){
         Color[] muestra = {Color.red,Color.blue,Color.green};
-        grafica histo = new grafica ("num","coincidencia","histograma");
+        grafica histo = new grafica ("num","coincidencia","histograma "+this.titulo);
         histo.agregarSerie(this.red, "rojo");
         histo.agregarSerie(this.blue, "azul");
         histo.agregarSerie(this.green, "green");
@@ -63,20 +88,20 @@ public class histograma{
     }
     public void imprimirGrafica(){
         //Imprime rojos
-        grafica rojos = new grafica ("x","y","rojos");
+        grafica rojos = new grafica ("x","y","rojos "+this.titulo);
         rojos.agregarSerie(this.red, "rojo");
         rojos.creaYmuestraGrafica(Color.RED);
 
 
-        grafica azules = new grafica ( "x","y","azules");
+        grafica azules = new grafica ( "x","y","azules "+this.titulo);
         azules.agregarSerie(this.blue, "azul");
         azules.creaYmuestraGrafica(Color.BLUE);
 
-        grafica verdes = new grafica ( "x","y","verdes");
+        grafica verdes = new grafica ( "x","y","verdes "+this.titulo);
         verdes.agregarSerie(this.green, "verde");
         verdes.creaYmuestraGrafica(Color.GREEN);
 
-        grafica grises = new grafica ( "x","y","grises");
+        grafica grises = new grafica ( "x","y","grises "+this.titulo);
         grises.agregarSerie(this.hgris, "gris");
         grises.creaYmuestraGrafica(Color.GRAY);
 

@@ -29,9 +29,9 @@ public class Main {
         JframeImagen frame = new JframeImagen(imagen);
         BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         filtros uwu = new filtros(imagen);
-        histograma normal = new histograma(imagen);
+        histograma normal = new histograma(imagen,"normal");
         normal.imprimirRGB();
-        histograma negativo = new histograma(uwu.negativos());
+        histograma negativo = new histograma(uwu.negativos(),"negativo");
         negativo.imprimirRGB();
     }
 }
