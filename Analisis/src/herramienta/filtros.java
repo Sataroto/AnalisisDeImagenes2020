@@ -14,7 +14,7 @@ public class filtros{
     public double[] blue;
     public double[] green;
     public double[] hgris;
-    private BufferedImage bi;
+    public Image imagen;
     public filtros(){
         red = new double[256];
         blue = new double[256];
@@ -23,14 +23,15 @@ public class filtros{
 
         Image imagen = AbrirImagen.openImage();
         JframeImagen frame = new JframeImagen(imagen);
-        this.bi = AbrirImagen.toBufferedImage(imagen);
+
     }
     public filtros(Image imagen){
-        this.bi = AbrirImagen.toBufferedImage(imagen);
+        this.imagen = imagen;
     }
 
 
     public Image negativos(){
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         for ( int x = 0; x<bi.getWidth();x++){
             for(int y =0; y<bi.getHeight();y++){
                Color muestra = new Color(bi.getRGB(x, y));
@@ -42,7 +43,8 @@ public class filtros{
         return AbrirImagen.toImage(bi);
     }
 
-    public void grises(){
+    public Image grises(){
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         for ( int x = 0; x<bi.getWidth();x++){
             for(int y =0; y<bi.getHeight();y++){
                Color muestra = new Color(bi.getRGB(x, y));
@@ -52,9 +54,10 @@ public class filtros{
             }
         }
         JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi));
-        
+        return AbrirImagen.toImage(bi);
     }
-    public void temperatura(int tem){
+    public Image temperatura(int tem){
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         for (int x = 0 ; x<bi.getWidth();x++ ){
             for(int y = 0; y<bi.getHeight();y++){
                 Color muestra = new Color(bi.getRGB(x, y));
@@ -63,9 +66,11 @@ public class filtros{
                     bi.setRGB(x,y, (new Color(temred,muestra.getGreen(),temblue)).getRGB());
             }
         }
-        JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi)); 
+        JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi));
+        return AbrirImagen.toImage(bi); 
     }
-    public void iluminacion(int light){
+    public Image iluminacion(int light){
+        BufferedImage bi = AbrirImagen.toBufferedImage(imagen);
         for (int x = 0 ; x<bi.getWidth();x++ ){
             for(int y = 0; y<bi.getHeight();y++){
                 Color muestra = new Color(bi.getRGB(x, y));
@@ -76,6 +81,7 @@ public class filtros{
             }
         }
         JframeImagen frame2 = new JframeImagen(AbrirImagen.toImage(bi)); 
+        return AbrirImagen.toImage(bi);
     }
     public int validar(int aux){
         if (aux>255)

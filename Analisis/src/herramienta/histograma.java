@@ -53,6 +53,14 @@ public class histograma{
         }
 
     }
+    public void imprimirRGB(){
+        Color[] muestra = {Color.red,Color.blue,Color.green};
+        grafica histo = new grafica ("num","coincidencia","histograma");
+        histo.agregarSerie(this.red, "rojo");
+        histo.agregarSerie(this.blue, "azul");
+        histo.agregarSerie(this.green, "green");
+        histo.creaYmuestraGrafica(muestra);
+    }
     public void imprimirGrafica(){
         //Imprime rojos
         grafica rojos = new grafica ("x","y","rojos");

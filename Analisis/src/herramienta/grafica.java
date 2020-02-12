@@ -68,6 +68,9 @@ public class grafica {
         for ( int i =0 ;i<muestras.length;i++){
             plot.getRenderer().setSeriesPaint(i, muestras[i] );
         }
+        ChartFrame panel = new ChartFrame(titulo, grafica);
+        panel.pack();
+        panel.setVisible(true);
     }
     public void creaYmuestraGrafica(){
         this.grafica=ChartFactory.createXYAreaChart(titulo, ejeX, ejeY, series);
